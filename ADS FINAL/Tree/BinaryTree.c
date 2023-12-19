@@ -136,6 +136,28 @@ int leftCount = CountNodes(currNode->left);
 int rightCount = CountNodes(currNode->right);
 return 1 + leftCount + rightCount;
 }
+void printTree(struct node *root, int space)
+{
+    // Base case
+    if (root == NULL)
+        return;
+
+    // Increase distance between levels
+    space += 5;
+
+    // Process right child first
+    printTree(root->right, space);
+
+    // Print current node after space
+    printf("\n");
+    for (int i = 5; i < space; i++)
+        printf(" ");
+    printf("%d\n", root->data);
+
+    // Process left child
+    printTree(root->left, space);
+}
+
 
 
 int main()
@@ -171,5 +193,9 @@ printf("Level wise traversal of mirror image: ");
 levelOrder(root);
 printf("\n");
 printf("Total number of nodes : %d\n", CountNodes(root));
+printf("\nVisual Representation of Binary Tree:\n");
+    printTree(root, 0);
+
 return 0;
 }
+
