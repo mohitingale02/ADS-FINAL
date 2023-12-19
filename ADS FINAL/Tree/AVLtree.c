@@ -240,20 +240,29 @@ InOrder(root->right);
 
 void display(struct Node *root, int space)
 {
-if (root == NULL)
-{
-return;
+    if (root == NULL)
+    {
+        return;
+    }
+
+    space += 10;
+
+    display(root->right, space);
+
+    // Print a newline before each node (including the root)
+    printf("\n");
+
+    // Use the dynamically adjusted space value
+    for (int i = 10; i < space; i++)
+    {
+        printf(" ");
+    }
+
+    printf("%d\n", root->data);
+
+    display(root->left, space);
 }
-space += 10;
-display(root->right, space);
-printf("\n");
-for (int i = 10; i < space; i++)
-{
-printf(" ");
-}
-printf("%d\n", root->data);
-display(root->left, space);
-}
+
 
 
 int main(){
